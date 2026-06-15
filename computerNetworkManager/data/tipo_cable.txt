@@ -1,0 +1,4 @@
+1; C5; UTP Cat. 5; 100;
+2; C5E; UTP Cat. 5e; 1000;
+3; C6; UTP Cat. 6; 5000;
+4; SOF; Single-mode Optical Fiber; 10000;

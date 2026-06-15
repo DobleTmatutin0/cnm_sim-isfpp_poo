@@ -1,0 +1,6 @@
+1; RT; Router;
+2; SW; Switch;
+3; AP; Access Point;
+4; PC; Personal Computer;
+5; PRT; Impresora;
+6; NAS; Network Attached Storage;
