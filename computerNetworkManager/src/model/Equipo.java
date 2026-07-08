@@ -14,6 +14,7 @@ public class Equipo {
     private List<Puerto> puertos;
     private TipoEquipo tipoEquipo;
     private Ubicacion ubicacion;
+    private boolean estado;
 
     // Getters
     public long getId() {
@@ -52,6 +53,10 @@ public class Equipo {
         return ubicacion;
     }
 
+    public boolean getEstado() {
+        return estado;
+    }
+
     // Setters
     public void setId(long id) {
         this.id = id;
@@ -87,6 +92,10 @@ public class Equipo {
 
     public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public void setEstado(boolean newEstado) {
+        this.estado = newEstado;
     }
 
     @Override
