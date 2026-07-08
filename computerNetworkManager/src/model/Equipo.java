@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 public class Equipo {
+
     // Attributes
     private long id;
     private String codigo;
@@ -13,8 +14,7 @@ public class Equipo {
     private List<Puerto> puertos;
     private TipoEquipo tipoEquipo;
     private Ubicacion ubicacion;
-    
-    
+
     // Getters
     public long getId() {
         return id;
@@ -89,56 +89,53 @@ public class Equipo {
         this.ubicacion = ubicacion;
     }
 
-
-    
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-        result = prime * result + ((marca == null) ? 0 : marca.hashCode());
-        result = prime * result + ((modelo == null) ? 0 : modelo.hashCode());
+        result = prime * result + (codigo == null ? 0 : codigo.hashCode());
+        result = prime * result + (marca == null ? 0 : marca.hashCode());
+        result = prime * result + (modelo == null ? 0 : modelo.hashCode());
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
         Equipo other = (Equipo) obj;
-        if (id != other.id)
-            return false;
+        if (id != other.id) return false;
         if (codigo == null) {
-            if (other.codigo != null)
-                return false;
-        } else if (!codigo.equals(other.codigo))
-            return false;
+            if (other.codigo != null) return false;
+        } else if (!codigo.equals(other.codigo)) return false;
         if (marca == null) {
-            if (other.marca != null)
-                return false;
-        } else if (!marca.equals(other.marca))
-            return false;
+            if (other.marca != null) return false;
+        } else if (!marca.equals(other.marca)) return false;
         if (modelo == null) {
-            if (other.modelo != null)
-                return false;
-        } else if (!modelo.equals(other.modelo))
-            return false;
+            if (other.modelo != null) return false;
+        } else if (!modelo.equals(other.modelo)) return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "[EQUIPO] tipoEquipo:" + tipoEquipo + "\n"
-            + "codigo:" + codigo + "\n"
-            + "marca:" + marca + "\n"
-            + ", modelo:" + modelo + "\n"
-            +  "ubicacion:" + ubicacion
-        ;
+        return (
+            "[EQUIPO] tipoEquipo:" +
+            tipoEquipo +
+            "\n" +
+            "codigo:" +
+            codigo +
+            "\n" +
+            "marca:" +
+            marca +
+            "\n" +
+            ", modelo:" +
+            modelo +
+            "\n" +
+            "ubicacion:" +
+            ubicacion
+        );
     }
-    
 }
