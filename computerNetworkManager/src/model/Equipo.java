@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Equipo {
@@ -42,7 +43,7 @@ public class Equipo {
     }
 
     public List<Puerto> getPuertos() {
-        return puertos;
+        return new ArrayList<>(puertos);
     }
 
     public TipoEquipo getTipoEquipo() {
@@ -82,10 +83,6 @@ public class Equipo {
         this.direccionesIp = direccionesIp;
     }
 
-    public void setPuertos(List<Puerto> puertos) {
-        this.puertos = puertos;
-    }
-
     public void setTipoEquipo(TipoEquipo tipoEquipo) {
         this.tipoEquipo = tipoEquipo;
     }
@@ -96,6 +93,12 @@ public class Equipo {
 
     public void setEstado(boolean newEstado) {
         this.estado = newEstado;
+    }
+
+    public Puerto agregarPuerto(TipoPuerto aTipoPuerto, int aCantidad) {
+        Puerto newPuerto = new Puerto(aTipoPuerto, aCantidad);
+        this.puertos.add(newPuerto);
+        return newPuerto;
     }
 
     @Override
@@ -131,20 +134,24 @@ public class Equipo {
     @Override
     public String toString() {
         return (
-            "[EQUIPO] tipoEquipo:" +
-            tipoEquipo +
-            "\n" +
-            "codigo:" +
-            codigo +
-            "\n" +
-            "marca:" +
-            marca +
-            "\n" +
-            ", modelo:" +
-            modelo +
-            "\n" +
-            "ubicacion:" +
-            ubicacion
+            "[EQUIPO] tipoEquipo: " + tipoEquipo + "\n" +
+            "codigo: " + codigo + "\n" +
+            "marca: " + marca + "\n" +
+            ", modelo: " + modelo + "\n" +
+            "ubicacion: " + ubicacion
         );
+    }
+
+    private class Puerto {
+
+        // attributes
+        private int cantidad;
+        private TipoPuerto tipoPuerto;
+
+        public Puerto(TipoPuerto aTipoPuerto, int aCantidad) {
+            this.tipoPuerto = aTipoPuerto;
+            this.cantidad = aCantidad;
+        }
+
     }
 }
