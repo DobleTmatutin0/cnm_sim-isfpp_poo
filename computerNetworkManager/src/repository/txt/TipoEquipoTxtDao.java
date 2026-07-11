@@ -26,6 +26,7 @@ public class TipoEquipoTxtDao implements TipoEquipoDAO {
 
     @Override
     public void insertar(TipoEquipo aTipoEquipo) {
+        aTipoEquipo.setId(this.tiposDeEquipoList.getLast().getId() + 1);
         this.tiposDeEquipoList.add(aTipoEquipo);
         this.escribirArchivo();
     }
