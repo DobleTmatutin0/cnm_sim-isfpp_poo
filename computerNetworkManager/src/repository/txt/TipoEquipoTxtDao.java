@@ -16,11 +16,12 @@ import repository.dao.TipoEquipoDAO;
 
 public class TipoEquipoTxtDao implements TipoEquipoDAO {
 
-    private String path;
+    private String filePath;
     private List<TipoEquipo> tiposDeEquipoList;
 
     public TipoEquipoTxtDao(String pathToRead) {
-        this.path = pathToRead;
+        this.filePath = pathToRead;
+        this.tiposDeEquipoList = this.leerDesdeArchivo();
     }
 
     @Override
@@ -31,23 +32,22 @@ public class TipoEquipoTxtDao implements TipoEquipoDAO {
 
     @Override
     public void actualizar(TipoEquipo aTipoEquipo) {
-        int poss = this.tiposDeEquipoList.indexOf(aTipoEquipo);
-        this.tiposDeEquipoList.set(poss, aTipoEquipo);
-        this.escribirArchivo();
+        int position = this.tiposDeEquipoList.indexOf(aTipoEquipo);
+        if (position >= 0) {
+            this.tiposDeEquipoList.set(position, aTipoEquipo);
+            this.escribirArchivo();
+        }
     }
 
     @Override
     public void borrar(TipoEquipo aTipoEquipo) {
-        this.tiposDeEquipoList.remove(aTipoEquipo);
-        this.escribirArchivo();
+         if  (this.tiposDeEquipoList.remove(aTipoEquipo)) {
+             this.escribirArchivo();
+         }
     }
 
     @Override
     public List<TipoEquipo> buscarTodos() {
-        if (tiposDeEquipoList == null) {
-            tiposDeEquipoList = leerDesdeArchivo();
-        }
-
         return new ArrayList<>(tiposDeEquipoList);
     }
 
@@ -55,7 +55,7 @@ public class TipoEquipoTxtDao implements TipoEquipoDAO {
         List<TipoEquipo> result = new ArrayList<>();
         Scanner inFile = null;
         try {
-            inFile = new Scanner(new File(path));
+            inFile = new Scanner(new File(filePath));
             // \\s* se usa para que ignore los espacios q esten antes o despues de el caracter de separacion
             inFile.useDelimiter("\\s*;\\s*");
             while (inFile.hasNext()) {
@@ -66,7 +66,7 @@ public class TipoEquipoTxtDao implements TipoEquipoDAO {
                 result.add(tipoEquipo);
             }
         } catch (FileNotFoundException fnfExc) {
-            System.err.println("Error al abrir el archivo tipo_quipo: " + this.path);
+            System.err.println("Error al abrir el archivo tipo_quipo: " + this.filePath);
         } catch (IllegalStateException isExc) {
             System.err.println("Error al leer el archivo");
         } catch (NumberFormatException nfExc) {
@@ -84,7 +84,7 @@ public class TipoEquipoTxtDao implements TipoEquipoDAO {
         FileWriter fileW = null;
         PrintWriter printW = null;
         try {
-            fileW = new FileWriter(path);
+            fileW = new FileWriter(filePath);
             printW = new PrintWriter(fileW);
 
             for (TipoEquipo te : this.tiposDeEquipoList) {
@@ -94,11 +94,11 @@ public class TipoEquipoTxtDao implements TipoEquipoDAO {
             System.err.println("Error en la creacion del FileWriter");
         } finally {
             try {
-                if (fileW != null ) {
-                    fileW.close();
-                }
                 if (printW != null ) {
                     printW.close();
+                }
+                if (fileW != null ) {
+                    fileW.close();
                 }
             } catch (IOException ioeExc) {
                 System.err.println("Error al cerrar el FileWriter");
