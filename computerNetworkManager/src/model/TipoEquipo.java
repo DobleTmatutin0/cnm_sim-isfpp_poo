@@ -51,3 +51,6 @@ public class TipoEquipo {
 
 
 }
+// aca hay un temita con los id no tendria q ser posible asignarlos con setter
+// lo mismo con el codigo
+// pero creo q el txt lo requiere
