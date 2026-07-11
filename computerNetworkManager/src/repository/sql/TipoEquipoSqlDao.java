@@ -1,30 +1,41 @@
 package repository.sql;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import java.util.List;
+import java.util.ArrayList;
 
 import model.TipoEquipo;
 import repository.dao.TipoEquipoDAO;
 
 public class TipoEquipoSqlDao implements TipoEquipoDAO {
 
-    private List<TipoEquipo> equipos;
-    private String nombre;
-    private boolean actualizar;
+    private String path;
+    private List<TipoEquipo> tiposDeEquipoList;
 
-    public TipoEquipoSqlDao() {
-        
+    public TipoEquipoSqlDao(String pathToRead) {
+
     }
 
-    public void insertar(TipoEquipo aTipoEquipo) {}
+    @Override
+    public void insertar(TipoEquipo aTipoEquipo) {
 
-    public void actualizar(TipoEquipo aTipoEquipo) {}
+    }
 
-    public void borrar(TipoEquipo aTipoEquipo) {}
+    @Override
+    public void actualizar(TipoEquipo aTipoEquipo) {
 
+    }
+
+    @Override
+    public void borrar(TipoEquipo aTipoEquipo) {
+
+    }
+
+    @Override
     public List<TipoEquipo> buscarTodos() {
-        List<TipoEquipo> result = new ArrayList<>();
 
-        return result;
     }
+
 }
